@@ -1,0 +1,18 @@
+{
+    "scripts": {
+        "tw": "npx tailwindcss -i ./views/input.css -o ./views/output.css --watch"
+    },
+    "devDependencies": {
+        "daisyui": "^4.11.1",
+        "prettier": "3.2.5",
+        "tailwindcss": "^3.4.6"
+    },
+    "dependencies": {
+        "animate.css": "^4.1.1",
+        "boxicons": "^2.1.4",
+        "chart.js": "^4.4.4",
+        "jquery": "^3.7.1",
+        "jquery-ui": "^1.13.3",
+        "lucide": "^0.396.0"
+    }
+}
