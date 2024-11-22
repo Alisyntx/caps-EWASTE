@@ -40,6 +40,8 @@ if (empty($ses_id)) {
             <!-- start contents here total donations total redemption -->
             <div class="lg:h-[90%] w-full overflow-x-auto">
                 <!-- right content -->
+                 <div class="toast toast-end z-50" id="alertMsg">
+                </div>
                 <div class=" w-full flex lg:flex-row mt-2 lg:flex gap-2 ">
                     <div class="w-[70%] h-auto flex flex-col gap-2">
                         <div class=" h-20 flex flex-row justify-between">
@@ -72,60 +74,109 @@ if (empty($ses_id)) {
                                 </div> -->
                             </div>
                         </div>
-                        <div class="w-full h-[400px] bg-bgbox rounded-md p-4">
-                            <canvas id="myChart" ></canvas>
-
+                        <div class="font-popin text-md font-semibold self-center text-center">Recycled Analysis</div> 
+                        <div class="w-full h-[400px] bg-bgbox rounded-md p-4 ">
+                            <canvas id="myChart"></canvas>
+                        </div>
+                        <div class="font-popin text-md font-semibold self-center text-center">Redeemed Analysis</div> 
+                        <div class="w-full h-[400px] bg-bgbox rounded-md p-4 ">
+                            <canvas id="myChartRedeem"></canvas>
                         </div>
                     </div>
 
                     <!-- left content Recent Activities-->
-                    <div class="w-[30%] h-[500px] rounded-md p-2  bg-[url('../src/img/dashbg1.svg')]">
-                        <div class=" flex gap-1 ">
-                            <div class="font-popin p-1 font-light text-[15px]">Recent Activities</div>
-                            <i data-lucide="history" class="w-6 h-6 text-bgtext"></i>
+                     <div class="flex flex-col w-[30%]">
+                        <div class="w-full h-[500px] rounded-md p-2 bg-[url('../src/img/dashbg1.svg')]">
+                            <?php include "../src/admin/components/fetching/dashboardFetch/recentActivities.php" ?>
                         </div>
-                        <div class="w-full card rounded-md flex justify-center bg-base-100 shadow">
-                            <div class="overflow-x-auto bg-bgbox">
-                                <table class="table table-xs">
-                                    <!-- head -->
-                                    <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th>Date</th>
-                                            <th>Activity</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- row 1 -->
-                                        <tr>
-                                            <th>1</th>
-                                            <td class="font-light text-[10px]">04/20/24 12:00</td>
-                                            <td class="font-light">Ashong Salongga Registered</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="h-full bg-bgcard w-full mt-2 p-2 rounded-md flex flex-col items-center">
+                            <div class="border border-bgborder p-2 mt-2 rounded-md border-opacity-50 bg-bgbox">
+                                <div class="font-popin p-2 text-center font-medium">Generate Recycled Report</div>
+                                <a class="btn btn-xs bg-bgbox btn-mostly" href="#">
+                                    Most Recycled Items 
+                                    <i data-lucide="printer" class="w-4 h-4"></i>
+                                </a>
+                                <a class="btn btn-xs bg-bgbox btn-All-items" href="#">
+                                    All Recycled Items 
+                                    <i data-lucide="printer" class="w-4 h-4"></i>
+                                </a>
+                                <div class="border p-2 border-bgborder rounded-md mt-2 border-opacity-50">
+
+                                    <div class="font-popin text-center text-sm">Cutom Date</div>
+                                        <form method="POST" id="customDate" action="../src/admin/components/fetching/reports/rcyCustomData.php" target="_blank">
+                                            <input id="custom-date-picker" name="custom_date" type="date" class="input input-bordered mt-2 w-full max-w-xs input-sm" />
+                                            <button type="submit" class="btn btn-xs bg-bgbox mt-4" id="customDateBtn" class="font-popin">Generate <i data-lucide="printer" class="w-4 h-4"></i></button>
+                                        </form>
+                                </div>
                             </div>
+                            <div class="border border-bgborder p-2 mt-2 rounded-md border-opacity-50 bg-bgbox">
+                                <div class="font-popin p-2 text-center font-medium">Generate Redeemed Report</div>
+                                <a class="btn btn-xs bg-bgbox btn-mostlyRwd" href="#">
+                                    Most Redeem Items 
+                                    <i data-lucide="printer" class="w-4 h-4"></i>
+                                </a>
+                                <a class="btn btn-xs bg-bgbox btn-allRwd mt-1" href="#">
+                                    All Redeem Items 
+                                    <i data-lucide="printer" class="w-4 h-4"></i>
+                                </a>
+                                <div class="border p-2 border-bgborder rounded-md mt-2 border-opacity-50">
+
+                                    <div class="font-popin text-center text-sm">Cutom Date</div>
+                                        <form method="POST" id="customDate" action="../src/admin/components/fetching/reports/rwdCustomData.php" target="_blank">
+                                            <input id="custom-rwddate-picker" name="customRwdDate" type="date" class="input input-bordered mt-2 w-full max-w-xs input-sm" />
+                                            <button type="submit" class="btn btn-xs bg-bgbox mt-4" id="customDateBtn" class="font-popin">Generate <i data-lucide="printer" class="w-4 h-4"></i></button>
+                                        </form>
+                                </div>
+                            </div>
+                            
+                            
                         </div>
-                    </div>
+                        </div>
+
+                     </div>
+                   
+                   
                 </div>
             </div>
         </div>
     </div>
-    <dialog id="addItemModal" class="modal">
-        <?php include 'components/dialogs/item.php' ?>
+    <dialog id="showRcntAct" class="modal">
+        
     </dialog>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             lucide.createIcons();
         });
+        const dateInput = document.getElementById('custom-date-picker');
+        dateInput.addEventListener('change', function() {
+        const selectedDate = dateInput.value;
+        console.log("Selected Date: ", selectedDate); 
+        });
+        const dateRwdInput = document.getElementById('custom-rwddate-picker');
+        dateRwdInput.addEventListener('change', function() {
+        const selectedDate = dateRwdInput.value;
+         console.log("Selected RWDDate: ", selectedDate); 
+        });
     </script>
     <script src="../node_modules/chart.js/dist/chart.umd.js"></script>
-   <script>
+    <script>
+        document.getElementById('printButton').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
 
-</script>
-
-    <script src="test.js"></script>
+            // Open the report page in a new window
+            const printWindow = window.open('rcyReports.php', '_blank');
+            
+            // Wait for the new window to load, then print
+            printWindow.addEventListener('load', function() {
+                printWindow.print();
+            });
+        });
+    </script>
+   
+    <script type="module" src="ewstChart.js"></script>
+    <script type="module" src="rwdChart.js"></script>
 </body>
 
 </html>
+<script type="module" src="../src/admin/js/main.js"></script>
 <script src="../src/admin/js/script.js"></script>

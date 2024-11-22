@@ -45,9 +45,13 @@ if (
                     $response = [
                         'scs' => true,
                         'msg' => 'successfully Added !!',
-                        'ewstName' => $newItem['ewst_name'],
+                        'ewstName' => $ewst_name,
                         'ewstImg' => $newItem['ewst_img'],
-                        'ewstCtyId' => $ewst_ctyfk
+                        'ewstCtyId' => $ewst_ctyfk,
+                        'ewstId' => $newItem['ewst_id'],
+                        'ewstGcon' => $ewst_gcon,    
+                        'ewstPdam' => $ewst_pdam,    
+                        'ewstFdam' => $ewst_fdam
                     ];
                 } else {
                     $response = [

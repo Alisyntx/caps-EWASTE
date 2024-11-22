@@ -12,8 +12,10 @@
                             $item_query = $conn->query("SELECT * FROM tbl_ewst WHERE ewst_ctyfk = " . $category_data['cty_id']);
                             while ($item_data = mysqli_fetch_array($item_query)) {
                             ?>
+                            
                                 <div class=" flex space-x-4 cursor-pointer carOverf max-w-full  pb-2">
-
+                                <div class="lg:tooltip" data-tip="hello">
+                                <div class="lg:tooltip" data-tip="hello">
                                     <div class="card carousel-item w-auto  bg-base-100 shadow-xl">
                                         <figure class="px-2 pt-5 w-36">
                                             <img src="../src/img/kb.jpg" alt="keyboard" class="rounded-box" />
@@ -21,6 +23,8 @@
                                         <button class="btn btnItem mx-2 bg-[#FDE5D4] btn-sm mt-4 flex items-center justify-center" onclick="infoItemModal.showModal()" id="<?php echo $item_data['ewst_id'] ?>"><i class='bx bx-info-circle text-lg' style='color:#001524'></i>
                                             <?php echo $item_data['ewst_name'] ?>
                                         </button>
+                <div>test</div>
+                                        
                                     </div>
                                 </div>
                             <?php

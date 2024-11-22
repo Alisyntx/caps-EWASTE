@@ -1,5 +1,5 @@
 <?php
-$query = "SELECT COUNT(*) AS total_redemptionItems FROM tbl_catalog";
+$query = "SELECT COUNT(*) AS total_redemptionItems FROM tbl_rwd_items";
 $result = $conn->query($query);
 
 if ($result) {
@@ -10,7 +10,7 @@ if ($result) {
 }
 
 ?>
-<div class="stats shadow rounded-md bg-bgbox">
+<div class="stats shadow rounded-md bg-bgbox border border-bgborder border-opacity-50">
     <div class="stat p-2">
         <div class="stat-figure text-bgtext">
             <i data-lucide="gift"></i>

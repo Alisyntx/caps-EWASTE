@@ -5,9 +5,7 @@ $category_query = $conn->query("SELECT * FROM tbl_category WHERE cty_id = $id");
 $category_data = mysqli_fetch_array($category_query);
 ?>
 <div class="modal-box border border-bgborder bg-bgbox rounded-md">
-    <div class="toast toast-end z-50" id="addItemCtyAlertMsg">
-
-    </div>
+   
     <form method="dialog">
         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
     </form>

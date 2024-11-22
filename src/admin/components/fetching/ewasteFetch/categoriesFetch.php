@@ -4,12 +4,13 @@ $category_query = $conn->query("SELECT * FROM tbl_category");
 ?>
 <!-- Filter Buttons for Each Category -->
 <div class="filter-buttons flex justify-start mb-5 bg-bgbox mt-2 p-2 rounded-md">
+    <button class="filter-btn btn btn-xs mx-2 font-popin font-normal text-xs shadow-md" data-category-id="all">Show All</button>
     <?php while ($category_data = mysqli_fetch_array($category_query)) { ?>
-        <button class="filter-btn btn bg-mainbg btn-sm mx-2" data-category-id="category-<?php echo $category_data['cty_id']; ?>">
+        <button class="filter-btn btn font-popin font-normal shadow-md text-xs btn-xs mx-2" data-category-id="category-<?php echo $category_data['cty_id']; ?>">
             <?php echo $category_data['cty_name']; ?>
         </button>
     <?php } ?>
-    <button class="filter-btn btn btn-sm mx-2" data-category-id="all">Show All</button>
+
 </div>
 
 <!-- Categories List -->
@@ -17,21 +18,21 @@ $category_query = $conn->query("SELECT * FROM tbl_category");
 $category_query = $conn->query("SELECT * FROM tbl_category");
 while ($category_data = mysqli_fetch_array($category_query)) {
 ?>
-    <div class="category-box mt-2 mb-5 bg-bgbox border border-opacity-50 border-bgborder w-full h-auto rounded-md flex flex-col gap-1 shadow-md divide-y divide-bgborder" id="category-<?php echo $category_data['cty_id']; ?>">
+    <div class="category-box mt-2 mb-5 bg-bgbox border border-bgcard border-1 w-full h-auto rounded-md flex flex-col gap-1 shadow-md divide-y divide-bgborder ctyIds" id="category-<?php echo $category_data['cty_id']; ?>">
         <div class="p-1 flex justify-between">
-            <button class="btn btn-xs outline bg-transparent outline-1 rounded-md outline-bgborder  bg-bg text-bgtext text-xs font-popin">
+            <button class="btn bg-mainbg shadow-md font-poppin bg-transparent rounded-md btn-xs text-bgtext text-xs font-popin">
                 <?php echo $category_data['cty_name']; ?>
             </button>
             <div>
-                <button class="btn btn-xs btn-circle outline bg-transparent outline-1 text-center outline-bgborder  text-bgtext text-xs font-popin delCty" id="<?php echo $category_data['cty_id']; ?>" onclick="delCty.showModal()"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                <button class="btn btn-xs btn-circle outline bg-transparent outline-1 text-center outline-bgborder bg-bg text-bgtext text-xs font-popin addItemCtyId" id="<?php echo $category_data['cty_id']; ?>" onclick="addItemCty.showModal()"><i data-lucide="list-plus" class="w-4 h-4"></i></button>
+                <button class="btn btn-xs btn-circle bg-mainbg shadow-md font-poppin bg-transparent text-center text-bgtext text-xs font-popin delCty" id="<?php echo $category_data['cty_id']; ?>" onclick="delCty.showModal()"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                <button class="btn btn-xs btn-circle bg-mainbg shadow-md font-poppin bg-transparent text-center text-bgtext text-xs font-popin addItemCtyId" id="<?php echo $category_data['cty_id']; ?>" onclick="addItemCty.showModal()"><i data-lucide="list-plus" class="w-4 h-4"></i></button>
             </div>
         </div>
         <div class="overflow-x-auto">
             <table class="table table-xs">
                 <thead>
                     <tr>
-                        <th></th>
+                      
                         <th>Name</th>
                         <th>Condition</th>
                         <th></th>
@@ -45,8 +46,7 @@ while ($category_data = mysqli_fetch_array($category_query)) {
                         $counting = 1;
                         while ($items = $result->fetch_assoc()) {
                     ?>
-                            <tr class="itemids" id="item-<?php echo $items['ewst_id']; ?>">
-                                <th><?php echo $counting++; ?></th>
+                            <tr class="itemids" id="item-<?php echo $items['ewst_id']; ?>">  
                                 <td>
                                     <div class="flex items-center gap-3">
                                         <div class="avatar">
@@ -55,25 +55,38 @@ while ($category_data = mysqli_fetch_array($category_query)) {
                                             </div>
                                         </div>
                                         <div>
-                                            <div class="font-bold"><?php echo $items['ewst_name']; ?></div>
+                                            <div class="font-bold font-popin"><?php echo $items['ewst_name']; ?></div>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-sm">
-                                    <button class="btn checkPoints outline outline-bgdevider outline-1 bg-transparent rounded-md btn-xs font-popin" onclick="editPoints.showModal()" id="<?php echo $items['ewst_id']; ?>">
-                                        <i data-lucide="folder-open-dot" class="w-4 h-4 text-bgdevider"></i>
-                                        points
-                                    </button>
+                                <td class="">
+                                    <div class="btn checkPoints h-auto bg-mainbg border border-bgcard border-1 p-2 font-poppin bg-transparent rounded-md font-popin w-72" onclick="editPoints.showModal()" id="<?php echo $items['ewst_id']; ?>">
+                                        <div class=" flex flex-row justify-between">
+                                            <div class="flex flex-col items-start font-normal">
+                                                <div>Good Condition</div>
+                                                <div>Partially Damage</div>
+                                                <div>Fully Damage</div>
+                                            </div>
+                                            <div class="mx-3">
+                                                <div class="font-medium"><?php echo $items['ewst_gcon'] ?> points</div>
+                                                <div class="font-medium"><?php echo $items['ewst_pdam'] ?> points</div>
+                                                <div class="font-medium"><?php echo $items['ewst_fdam'] ?> points</div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </td>
                                 <td>
-                                    <button class="editItems btn outline outline-bgdevider outline-1 bg-transparent rounded-md btn-xs font-popin mx-2" onclick="editItems.showModal()" id="<?php echo $items['ewst_id']; ?>">
-                                        <i data-lucide="pencil" class="w-4 h-4 text-error"></i>
-                                        Edit
+                                    <button class="editItems btn bg-mainbg shadow-md font-poppin bg-transparent btn-circle btn-xs font-popin mx-2" onclick="editItems.showModal()" id="<?php echo $items['ewst_id']; ?>">
+                                        <i data-lucide="square-pen" class="w-4 h-4 text-error"></i>
+                                        
                                     </button>
-                                    <button class="deleteItems btn outline outline-bgdevider outline-1 bg-transparent rounded-md btn-xs font-popin" onclick="delItems.showModal()" id="<?php echo $items['ewst_id']; ?>">
+                                    <button class="deleteItems btn bg-mainbg shadow-md bg-transparent btn-circle btn-xs font-popin" onclick="delItems.showModal()" id="<?php echo $items['ewst_id']; ?>">
                                         <i data-lucide="trash-2" class="w-4 h-4 text-error"></i>
-                                        Delete
+                                       
                                     </button>
+
                                 </td>
                             </tr>
                     <?php

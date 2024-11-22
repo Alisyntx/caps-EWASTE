@@ -61,29 +61,29 @@ $(document).ready(function () {
     //  $('#dataTbl').DataTable();
        $('#dataTbl').DataTable({
             "pagingType": "simple", // Use simple pagination controls
-            "lengthMenu": [5, 10, 15, 20], // Control the length options
+            "lengthMenu": [-1, 5, 10, 15, 20], // Control the length options
             "language": {
                 "search": "",
-                "searchPlaceholder": "Search records"
+                "searchPlaceholder": "Search"
             },
-            "dom": '<"top"f>rt<"bottom"><"clear">'
+            "dom": '<"top d-flex justify-between"f>rt<"bottom"><"clear">'
         });
         //   $('#dt-search-0').val('Your Custom Value');
     // handling approve buttons
-    $('#dataTbl').on('click', '.acceptRwd', function() {
-        var url = '../../php/accRwd.php';
-        var rqsId = $(this).attr("id");
-        var usrId = $(this).data("usr-id");
-        var points = $(this).data("points");
+    // $('#dataTbl').on('click', '.acceptRwd', function() {
+    //     var url = '../../php/acceptRwd.php';
+    //     var rqsId = $(this).attr("id");
+    //     var usrId = $(this).data("usr-id");
+    //     var points = $(this).data("points");
         
-        // Alert to check if the values are being retrieved correctly
-        // alert("User ID: " + usrId + ", Points: " + points);
+    //     // Alert to check if the values are being retrieved correctly
+    //     // alert("User ID: " + usrId + ", Points: " + points);
         
-        var me = $(this);
-        $.post(url, { akoSiID: rqsId, userId: usrId, points: points }, function(response) {
-             response = JSON.parse(response);
-            alert(response.message)
-            me.closest('tr').fadeOut();
-        });
-    });
+    //     var me = $(this);
+    //     $.post(url, { akoSiID: rqsId, userId: usrId, points: points }, function(response) {
+    //          response = JSON.parse(response);
+    //         alert(response.message)
+    //         me.closest('tr').fadeOut();
+    //     });
+    // });
 });

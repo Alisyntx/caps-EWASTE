@@ -38,7 +38,11 @@ if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === UPLOAD_ERR_
                         'msg' => 'Successfully updated !!',
                         'ewstName' => $ewst_name,
                         'ewstImg' => $img_new_name,
-                        'ewstCtyId' => $ewst_ctyfk
+                        'ewstCtyId' => $ewst_ctyfk,
+                        'ewstId' => $ewst_id,
+                        'ewstGcon' => $ewst_gcon,
+                        'ewstPdam' => $ewst_pdam,
+                        'ewstFdam' => $ewst_fdam
                     ];
                 } else {
                     $response = [
@@ -73,7 +77,6 @@ if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === UPLOAD_ERR_
     $stmt->bind_result($current_img);
     $stmt->fetch();
     $stmt->close();
-
     // Update the other fields without changing the image
     $sql = "UPDATE tbl_ewst SET ewst_name = ?, ewst_gcon = ?, ewst_pdam = ?, ewst_fdam = ? WHERE ewst_id = ?";
     $stmt = $conn->prepare($sql);
@@ -86,9 +89,12 @@ if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === UPLOAD_ERR_
                 'scs' => true,
                 'msg' => 'Successfully updated !!',
                 'ewstName' => $ewst_name,
-                'itemId' => $ewst_id,
+                'ewstId' => $ewst_id,
                 'ewstImg' => $current_img, // Return the current image
-                'ewstCtyId' => $ewst_ctyfk
+                'ewstCtyId' => $ewst_ctyfk,
+                'ewstGcon' => $ewst_gcon,
+                'ewstPdam' => $ewst_pdam,
+                'ewstFdam' => $ewst_fdam
             ];
         } else {
             $response = [

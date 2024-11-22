@@ -22,6 +22,7 @@ module.exports = {
             bgoutline: "#0e8713",
             bgcard: "#F2FFFC",
             bgborder: "#4F6F52",
+            bgred: "#740938",
         },
     },
     plugins: [require("daisyui")],

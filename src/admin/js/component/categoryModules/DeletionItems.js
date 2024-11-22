@@ -28,7 +28,7 @@ class DeletionItems{
         const data = $(e.currentTarget).serialize();
         $.post(this.deleteItemUrl,data, (response)=>{
             if(response){
-                alert(response.msg)
+              
                 $(`#${this.itemToDelId}`).closest('.itemids').fadeOut(400, function() {
                     $(this).remove(); 
                 });

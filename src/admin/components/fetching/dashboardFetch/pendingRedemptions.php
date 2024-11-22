@@ -1,5 +1,6 @@
 <?php
-$query = "SELECT COUNT(*) AS total_Predemptions FROM tbl_request";
+$query = "SELECT COUNT(*) AS total_Predemptions FROM tbl_predeems
+";
 $result = $conn->query($query);
 if ($result) {
     $row = $result->fetch_assoc();
@@ -8,7 +9,7 @@ if ($result) {
     $total_Predemptions = 0;
 }
 ?>
-<div class="stats shadow rounded-md bg-bgbox">
+<div class="stats shadow rounded-md bg-bgbox border border-bgborder border-opacity-50">
     <div class="stat p-2">
         <div class="stat-figure text-bgtext">
             <i data-lucide="layout-list"></i>
