@@ -28,7 +28,7 @@
             </div>
             <div class="navbar-end">
                 <button class="btn btn-ghost text-xl font-popin font-bold text-[#001524]">
-                    E-waste
+                    E-Waste
                     <i class='bx bx-recycle'></i>
                 </button>
             </div>

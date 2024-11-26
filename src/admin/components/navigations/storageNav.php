@@ -73,6 +73,12 @@
              </details>
              
          </li>
+         <li>
+            <a href="userManagement.php" id="btncstm1" class="mt-2 text-xs justify-start flex btn-sm rounded-md font-semibold font-popin border border-bgborder">
+                  <i data-lucide="user-cog" class="mr-5 w-5 h-5 text-bgtext"></i>
+                 User Management
+             </a>
+         </li>  
           
 
      </ul>
