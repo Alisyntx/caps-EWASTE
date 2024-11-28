@@ -36,8 +36,8 @@
         <!-- landing content -->
         <div class="h-[90%] w-full lg:flex lg:flex-row flex-col">
            
-            <div class="h-full w-full lg:w-[50%] animate__animated animate__backInUp">
-                <div class="Lg:w-full lg:h-full flex lg:items-center lg:justify-center max-lg:pt-28">
+            <div class="h-full w-full lg:w-[50%]	">
+                <div class="Lg:w-full lg:h-full flex lg:items-center lg:justify-center max-lg:pt-28  animate__animated animate__pulse animate__slower animate__infinite">
                     <img alt="Tailwind CSS Navbar component" src="../src/img/ewasteLand.png" />
                 </div>
             </div>
