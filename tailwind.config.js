@@ -14,7 +14,7 @@ module.exports = {
         colors: {
             transparent: "transparent",
             current: "currentColor",
-            bgbox: "#E8DFCA",
+            bgbox: "#C1E2A4",
             bgtext: "#023106",
             bgdevider: "#0dac13",
             mainbg: "#F5EFE6",
@@ -23,6 +23,7 @@ module.exports = {
             bgcard: "#F2FFFC",
             bgborder: "#4F6F52",
             bgred: "#740938",
+            bgnav: "#d3e58f"
         },
     },
     plugins: [require("daisyui")],

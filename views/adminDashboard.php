@@ -33,7 +33,7 @@ if (empty($ses_id)) {
     <div class="w-svw h-svh overflow-y-auto bg-mainbg flex gap-1">
         <!-- this is located in src/admin/navigations -->
         <?php include '../src/admin/components/navigations/dashboard.php' ?>
-        <div class="lg:w-[83%] w-full h-full overflow-hidden">
+        <div class="lg:w-[83%] w-full h-full overflow-hidden text-bgtext">
             <div class="">
                 <?php include '../src/admin/components/navigations/headerSticky.php' ?>
             </div>
@@ -43,7 +43,7 @@ if (empty($ses_id)) {
                  <div class="toast toast-end z-50" id="alertMsg">
                 </div>
                 <div class=" w-full flex lg:flex-row mt-2 lg:flex gap-2 ">
-                    <div class="w-[70%] h-auto flex flex-col gap-2">
+                    <div class="w-[70%] h-auto mb-5 flex flex-col gap-2">
                         <div class=" h-20 flex flex-row justify-between">
                             <?php include "../src/admin/components/fetching/dashboardFetch/totalUsers.php" ?>
                             <?php include "../src/admin/components/fetching/dashboardFetch/pendingRedemptions.php" ?>
@@ -86,18 +86,19 @@ if (empty($ses_id)) {
 
                     <!-- left content Recent Activities-->
                      <div class="flex flex-col w-[30%]">
-                        <div class="w-full h-[500px] rounded-md p-2 bg-[url('../src/img/dashbg1.svg')]">
-                            <?php include "../src/admin/components/fetching/dashboardFetch/recentActivities.php" ?>
-                        </div>
-                        <div class="h-full bg-bgcard w-full mt-2 p-2 rounded-md flex flex-col items-center">
-                            <div class="border border-bgborder p-2 mt-2 rounded-md border-opacity-50 bg-bgbox">
+                        <div class="h-auto bg-bgcard w-full mb-2 p-2 rounded-md flex flex-col items-center">
+                            <div class=" p-2 rounded-md border-opacity-50 bg-bgbox">
                                 <div class="font-popin p-2 text-center font-medium">Generate Recycled Report</div>
-                                <a class="btn btn-xs bg-bgbox btn-mostly" href="#">
+                                <a class="btn btn-xs font-normal bg-bgbox btn-mostly" href="#">
                                     Most Recycled Items 
                                     <i data-lucide="printer" class="w-4 h-4"></i>
                                 </a>
-                                <a class="btn btn-xs bg-bgbox btn-All-items" href="#">
+                                <a class="btn btn-xs font-normal bg-bgbox btn-All-items" href="#">
                                     All Recycled Items 
+                                    <i data-lucide="printer" class="w-4 h-4"></i>
+                                </a>
+                                <a class="btn btn-xs font-normal bg-bgbox btn-per-student mt-2" href="#">
+                                    E-waste per student 
                                     <i data-lucide="printer" class="w-4 h-4"></i>
                                 </a>
                                 <div class="border p-2 border-bgborder rounded-md mt-2 border-opacity-50">
@@ -105,18 +106,22 @@ if (empty($ses_id)) {
                                     <div class="font-popin text-center text-sm">Cutom Date</div>
                                         <form method="POST" id="customDate" action="../src/admin/components/fetching/reports/rcyCustomData.php" target="_blank">
                                             <input id="custom-date-picker" name="custom_date" type="date" class="input input-bordered mt-2 w-full max-w-xs input-sm" />
-                                            <button type="submit" class="btn btn-xs bg-bgbox mt-4" id="customDateBtn" class="font-popin">Generate <i data-lucide="printer" class="w-4 h-4"></i></button>
+                                            <button type="submit" class="btn btn-xs bg-bgbox mt-4" id="customDateBtn" class="font-popin font-normal">Generate <i data-lucide="printer" class="w-4 h-4"></i></button>
                                         </form>
                                 </div>
                             </div>
-                            <div class="border border-bgborder p-2 mt-2 rounded-md border-opacity-50 bg-bgbox">
+                            <div class=" p-2 mt-2 rounded-md border-opacity-50 bg-bgbox">
                                 <div class="font-popin p-2 text-center font-medium">Generate Redeemed Report</div>
-                                <a class="btn btn-xs bg-bgbox btn-mostlyRwd" href="#">
+                                <a class="btn btn-xs font-normal bg-bgbox btn-mostlyRwd" href="#">
                                     Most Redeem Items 
                                     <i data-lucide="printer" class="w-4 h-4"></i>
                                 </a>
-                                <a class="btn btn-xs bg-bgbox btn-allRwd mt-1" href="#">
+                                <a class="btn btn-xs font-normal bg-bgbox btn-allRwd mt-1" href="#">
                                     All Redeem Items 
+                                    <i data-lucide="printer" class="w-4 h-4"></i>
+                                </a>
+                                <a class="btn btn-xs font-normal bg-bgbox btn-rwd-per-student mt-2" href="#">
+                                    Redeemed Item per student 
                                     <i data-lucide="printer" class="w-4 h-4"></i>
                                 </a>
                                 <div class="border p-2 border-bgborder rounded-md mt-2 border-opacity-50">
@@ -124,12 +129,15 @@ if (empty($ses_id)) {
                                     <div class="font-popin text-center text-sm">Cutom Date</div>
                                         <form method="POST" id="customDate" action="../src/admin/components/fetching/reports/rwdCustomData.php" target="_blank">
                                             <input id="custom-rwddate-picker" name="customRwdDate" type="date" class="input input-bordered mt-2 w-full max-w-xs input-sm" />
-                                            <button type="submit" class="btn btn-xs bg-bgbox mt-4" id="customDateBtn" class="font-popin">Generate <i data-lucide="printer" class="w-4 h-4"></i></button>
+                                            <button type="submit" class="btn btn-xs bg-bgbox mt-4" id="customDateBtn" class="font-popin font-normal">Generate <i data-lucide="printer" class="w-4 h-4"></i></button>
                                         </form>
                                 </div>
                             </div>
                             
                             
+                        </div>
+                        <div class="w-full h-[500px] rounded-md p-2 bg-[url('../src/img/dashbg1.svg')]">
+                            <?php include "../src/admin/components/fetching/dashboardFetch/recentActivities.php" ?>
                         </div>
                         </div>
 

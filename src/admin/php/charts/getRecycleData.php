@@ -50,10 +50,12 @@ foreach ($items as $itemName => $counts) {
     $dataset = [
         'label' => $itemName,
         'data' => [],
-        'backgroundColor' => 'rgba(75, 192, 192, 0.2)', // Light background color for the line
-        'borderColor' => 'rgb(75, 192, 192)', // Line color
-        'borderWidth' => 2, // Adjust thickness if needed
+        'backgroundColor' => '#84da63', // Light background color for the line
+        'borderColor' => '#d03839', // Line color
+        'borderWidth' => 1, // Adjust thickness if needed
         'fill' => false, // Ensure the area under the line is not filled
+        'borderRadius' => 20,
+       
     ];
 
     // Populate dataset with counts per month, aligning with $labels

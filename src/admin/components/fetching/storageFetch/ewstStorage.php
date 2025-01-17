@@ -24,6 +24,7 @@ $item_query = $conn->query("SELECT DISTINCT stg_item FROM tbl_storage");
                     <th>Username</th>
                     <th>Name</th>
                     <th>Item</th>
+                    <th>Brand and Modal name</th>
                     <th>Points</th>
                     <th>Date</th>
                 </tr>
@@ -50,6 +51,9 @@ $item_query = $conn->query("SELECT DISTINCT stg_item FROM tbl_storage");
                             </td>
                             <td class="">
                                 <div class="font-semibold"><?php echo $items['stg_item']; ?></div>
+                            </td>
+                            <td class="">
+                                <div class="font-semibold"><?php echo $items['stg_brand']; ?></div>
                             </td>
                             <td class="">
                                 <div class="font-semibold"><?php echo $items['stg_points']; ?> points</div>

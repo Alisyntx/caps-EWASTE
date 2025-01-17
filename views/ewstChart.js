@@ -20,13 +20,29 @@ async function renderChart() {
     };
 
     const config = {
-        type: "line",  // Line chart
+        type: "bar", // Chart type (can be 'line', 'bar', etc.)
         data: data,
         options: {
             responsive: true,  // Make the chart responsive
             scales: {
                 y: {
                     beginAtZero: true,  // Ensure the Y-axis starts at 0
+                },
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        usePointStyle: true,  // Use custom point style in legend
+                        pointStyle: 'roundedRect', // Rounded legend icons
+                        boxWidth: 15,  // Width of legend box
+                        boxHeight: 10, // Height of legend box
+                    },
+                },
+            },
+            elements: {
+                bar: {
+                    borderRadius: 10, // Rounded corners on bars
+                    borderWidth: 1, // Width of the bar border
                 },
             },
         },

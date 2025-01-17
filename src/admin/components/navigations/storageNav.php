@@ -1,4 +1,4 @@
- <div class="lg:w-[17%]  h-screen rounded-md hidden bg-bgbox lg:flex items-center flex-col">
+ <div class="lg:w-[17%]  h-screen rounded-md hidden bg-bgnav lg:flex items-center flex-col">
           <a href="" class="btn btn-ghost text-xl flex justify-start text-start mt-3 font-extrabold font-popin w-full">
          <img src="../src/img/rcyIcon.svg" alt="Icon" class="w-11 h-11">
          E-Waste

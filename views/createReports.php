@@ -51,6 +51,10 @@ if (empty($ses_id)) {
         include '../src/admin/components/fetching/reports/rwdAllData.php';
     } elseif ($reportType === 'mostlyRwd') {
         include '../src/admin/components/fetching/reports/rwdTableData.php';
+    } elseif ($reportType === 'ewastePerStud') {
+        include '../src/admin/components/fetching/reports/perStudentData.php';
+    }elseif ($reportType === 'rewardPerStud') {
+        include '../src/admin/components/fetching/reports/perStudentRwdData.php';
     }
 ?>
 </body>

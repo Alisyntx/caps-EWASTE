@@ -2,23 +2,21 @@
 // Set timezone to ensure date consistency
 date_default_timezone_set('Asia/Manila'); // Adjust if necessary
 
-// Get the current year
-$year = date('Y');
-
-// Prepare query to fetch all recycled items for the current year
+// Prepare query to fetch all recycled items
 $query = "
     SELECT hry_rcy_item AS item_name, 
            DATE_FORMAT(hry_rcy_date, '%M %d, %Y') AS recycled_date, 
-           hry_rcy_pts AS item_points, hry_refnum as ref_num
+           hry_rcy_pts AS item_points,
+           hry_refnum as ref_num, 
+           hry_user as student_name,
+           hry_brand as brand_name
     FROM tbl_rcnt_hry 
-    WHERE YEAR(hry_rcy_date) = ? 
-          AND hry_activity = 'Recycle Accepted'
+    WHERE hry_activity = 'Recycle Accepted'
     ORDER BY hry_rcy_date;
 ";
 
-// Prepare the statement
+// Prepare and execute the query
 $stmt = $conn->prepare($query);
-$stmt->bind_param("i", $year);
 $stmt->execute();
 $result = $stmt->get_result();
 ?>
@@ -41,15 +39,17 @@ $result = $stmt->get_result();
 <body>
     <div class="w-full h-full">
         <div class="h-auto w-auto mt-2 rounded-t-md font-popin text-center">
-            Recycled Items for <?php echo date('Y'); ?>
+           All Recycled Items
         </div>
         <div class="overflow-x-auto p-2">
-            <table class="table table-xs" >
+            <table class="table table-xs">
                 <!-- Table Head -->
                 <thead>
                     <tr>
-                        <th>ref No.</th>
+                        <th>Ref No.</th>
+                        <th>Student</th>
                         <th>Item</th>
+                        <th>Brand and Model</th>
                         <th>Points</th>
                         <th>Recycled Date</th>
                     </tr>
@@ -58,23 +58,26 @@ $result = $stmt->get_result();
                 <?php
                 // Check if there are results
                 if ($result->num_rows > 0) {
-                    $rank = 1; // Initialize ranking
                     while ($row = $result->fetch_assoc()) {
                         $itemName = $row['item_name']; // Item name
+                        $brandName = $row['brand_name']; // brand and model name
                         $itemPoints = $row['item_points']; // Item points
                         $recycledDate = $row['recycled_date']; // Recycled date
+                        $studentName = $row['student_name'];
                         $refNum = $row['ref_num']; // reference number
                 ?>
                     <tr>
-                        <th><?php echo $refNum ?></th>
-                        <td class="font-popin"><?php echo htmlspecialchars($itemName); ?></td>
+                        <th><?php echo htmlspecialchars($refNum); ?></th>
+                        <td class="font-popin"><?php echo htmlspecialchars($studentName); ?></td>
+                        <td class="font-popin"><?php echo htmlspecialchars($itemName); ?></td>           
+                        <td class="font-popin"><?php echo htmlspecialchars($brandName); ?></td>           
                         <td class="font-popin"><?php echo htmlspecialchars($itemPoints); ?> points</td>
                         <td class="font-popin"><?php echo htmlspecialchars($recycledDate); ?></td>
                     </tr>
                 <?php
                     }
                 } else {
-                    echo '<tr><td colspan="4" class="text-center">No data available for this year</td></tr>';
+                    echo '<tr><td colspan="5" class="text-center">No data available</td></tr>';
                 }
                 ?>
                 </tbody>

@@ -7,8 +7,9 @@
                 <tr>
                     <th>Ref Number</th>
                     <th>User Name</th>
-                    <th>Redeemed Item</th>
-                    <th>Redeemed Points</th>
+                    <th>Recycle Item</th>
+                    <th>Item Brand</th>
+                    <th>Points</th>
                     <th>Quantity</th>
                     <th>Status</th>
                     <th>Request Time</th>
@@ -32,6 +33,7 @@
                     $requestDate = new DateTime($data['pdn_dateAdd']);
                     $quantity = $data['pdn_qty'];
                     $ref = $data['pdn_ref'];
+                    $brand = $data['pdn_brand'];
                     if ($stats == 1) {
                         $status = 'Pending';
                     } else {
@@ -42,6 +44,7 @@
                          <td class="font-popin"><?php echo $ref ?></td>
                         <td class="font-popin font-medium"><?php echo $userf ?> <?php echo $userl ?> </td>
                         <td class="font-popin"><?php echo $ewst ?></td>
+                        <td class="font-popin"><?php echo $brand ?></td>
                         <td class="font-popin"><?php echo $points ?> points</td>
                         <td class="font-popin"><?php echo $quantity ?> pcs</td>
                         <td class="font-popin"><?php echo $status ?></td>

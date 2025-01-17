@@ -183,6 +183,8 @@ $(document).ready(() => {
     const allRcyReportBtn = new genReport('.btn-All-items', 'allRcy');
     const allRwdReportBtn = new genReport('.btn-allRwd', 'allRwd');
     const mostlyRwdReportBtn = new genReport('.btn-mostlyRwd', 'mostlyRwd');
+    const ewastePerStudBtn = new genReport('.btn-per-student', 'ewastePerStud');
+    const rewardPerStud = new genReport('.btn-rwd-per-student', 'rewardPerStud');
 
     //user management
     const userManageBtn = '.userManage';

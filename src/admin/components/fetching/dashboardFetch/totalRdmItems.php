@@ -10,7 +10,7 @@ if ($result) {
 }
 
 ?>
-<div class="stats shadow rounded-md bg-bgbox border border-bgborder border-opacity-50">
+<div class="stats shadow rounded-md bg-bgbox ">
     <div class="stat p-2">
         <div class="stat-figure text-bgtext">
             <i data-lucide="gift"></i>

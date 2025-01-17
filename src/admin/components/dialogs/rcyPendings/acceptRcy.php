@@ -13,6 +13,7 @@ $category_data = mysqli_fetch_array($category_query);
             <input type="text" name="rcyId" value="<?php echo $id ?>" hidden>
             <input type="text" name="userId" value="<?php echo $category_data['pdn_user'] ?>" hidden>
             <input type="text" name="ewstId" value="<?php echo $category_data['pdn_ewst'] ?>" hidden>
+            <input type="text" name="ewstBrand" value="<?php echo $category_data['pdn_brand'] ?>" hidden>
 
             <button type="submit" class="btn btn-xs bg-mainbg border btn-circle border-bgborder justify-center mt-2 mx-2 font-popin font-normal">
                 <i data-lucide="check" class="w-5 h-5 text-bgtext"></i>
