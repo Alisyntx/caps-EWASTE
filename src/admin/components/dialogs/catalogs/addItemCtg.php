@@ -21,7 +21,6 @@ $category_data = $category_query->fetch_assoc();
         Add Items to
         <span class="opacity-70 font-light"><?php echo htmlspecialchars($category_data['ctg_name']); ?></span>
     </h3>
-
     <form class="w-full mt-2" id="addItemCtgForm" enctype="multipart/form-data" method="POST">
         <div class="flex gap-2 w-auto h-auto items-center">
             <div class="border border-bgborder rounded-xl">

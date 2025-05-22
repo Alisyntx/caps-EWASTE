@@ -57,6 +57,7 @@ if ($resultItems->num_rows > 0) {
                             h.hry_brand AS brand, 
                             h.hry_rcy_item AS item, 
                             h.hry_rcy_pts AS points,
+                            h.hry_approvers as approver,
                             h.hry_rcy_date AS date 
                         FROM 
                             tbl_user u 
@@ -95,6 +96,7 @@ if ($resultItems->num_rows > 0) {
                                             <th class="px-4 py-2">Brand and Model Name</th>
                                             <th class="px-4 py-2">Ref No.</th>
                                             <th class="px-4 py-2">Points</th>
+                                            <th class="px-4 py-2">Approvers</th>
                                             <th class="px-4 py-2">Date Recycled</th>
                                         </tr>
                                     </thead>
@@ -108,6 +110,7 @@ if ($resultItems->num_rows > 0) {
                                             <td class="px-4 py-2"><?php echo htmlspecialchars($student['brand']); ?></td>
                                             <td class="px-4 py-2"><?php echo htmlspecialchars($student['ref_num']); ?></td>
                                             <td class="px-4 py-2"><?php echo htmlspecialchars($student['points']); ?> points</td>
+                                            <td class="px-4 py-2"><?php echo htmlspecialchars($student['approver']); ?></td>
                                             <td class="px-4 py-2"><?php echo htmlspecialchars($student['date']); ?></td>
                                         </tr>
                                         <?php

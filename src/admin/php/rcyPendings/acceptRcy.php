@@ -13,6 +13,7 @@ $rcyId = $_POST['rcyId'];
 $ewstId = $_POST['ewstId'];
 $rcyUser = $_POST['userId'];
 $ewstBrand = $_POST['ewstBrand'];
+$approvers = 'Admin1';
 
 $response = [];
 
@@ -63,13 +64,13 @@ if ($pstmt = $conn->prepare($pendingQuery)) {
             if ($istmt->execute()) {
                 // Step 2.1: Insert into the history table tbl_rcnt_hry
                 $historyQuery = "
-                    INSERT INTO tbl_rcnt_hry (hry_rcy_item, hry_rcy_cdtn, hry_activity, hry_rcy_pts, hry_rcy_date, hry_user, hry_user_id, hry_transac, hry_refnum, hry_brand) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO tbl_rcnt_hry (hry_rcy_item, hry_rcy_cdtn, hry_activity, hry_rcy_pts, hry_rcy_date, hry_user, hry_user_id, hry_transac, hry_refnum, hry_brand, hry_approvers) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ";
 
                 if ($hstmt = $conn->prepare($historyQuery)) {
                     $hstmt->bind_param(
-                        'sssississs',
+                        'sssississss',
                         $stg_itemname,
                         $stg_condition,
                         $stg_activity,
@@ -79,7 +80,8 @@ if ($pstmt = $conn->prepare($pendingQuery)) {
                         $rcyUser,
                         $stg_transaction,
                         $stg_refnum,
-                        $ewstBrand
+                        $ewstBrand,
+                        $approvers
                     );
 
                     if ($hstmt->execute()) {

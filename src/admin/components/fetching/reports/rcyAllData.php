@@ -9,7 +9,8 @@ $query = "
            hry_rcy_pts AS item_points,
            hry_refnum as ref_num, 
            hry_user as student_name,
-           hry_brand as brand_name
+           hry_brand as brand_name,
+           hry_approvers as approver
     FROM tbl_rcnt_hry 
     WHERE hry_activity = 'Recycle Accepted'
     ORDER BY hry_rcy_date;
@@ -51,6 +52,7 @@ $result = $stmt->get_result();
                         <th>Item</th>
                         <th>Brand and Model</th>
                         <th>Points</th>
+                        <th>Approvers</th>
                         <th>Recycled Date</th>
                     </tr>
                 </thead>
@@ -65,6 +67,7 @@ $result = $stmt->get_result();
                         $recycledDate = $row['recycled_date']; // Recycled date
                         $studentName = $row['student_name'];
                         $refNum = $row['ref_num']; // reference number
+                        $approver = $row['approver']
                 ?>
                     <tr>
                         <th><?php echo htmlspecialchars($refNum); ?></th>
@@ -72,6 +75,7 @@ $result = $stmt->get_result();
                         <td class="font-popin"><?php echo htmlspecialchars($itemName); ?></td>           
                         <td class="font-popin"><?php echo htmlspecialchars($brandName); ?></td>           
                         <td class="font-popin"><?php echo htmlspecialchars($itemPoints); ?> points</td>
+                        <td class="font-popin"><?php echo htmlspecialchars($approver); ?></td>
                         <td class="font-popin"><?php echo htmlspecialchars($recycledDate); ?></td>
                     </tr>
                 <?php
